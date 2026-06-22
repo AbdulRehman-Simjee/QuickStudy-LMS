@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -131,6 +131,20 @@ def build_dashboard(db: Session, *, user_id: int) -> DashboardOut:
         .count()
     )
 
+    # Approximate weekly study hours from the durations of videos uploaded in
+    # the last 7 days (no dedicated time-tracking table exists yet, so this
+    # is an estimate derived from existing video duration data).
+    week_ago = datetime.now(timezone.utc) - timedelta(days=7)
+    study_seconds_this_week = 0.0
+    for v in videos:
+        created = v.created_at
+        if created is None or v.duration is None:
+            continue
+        created_utc = created if created.tzinfo is not None else created.replace(tzinfo=timezone.utc)
+        if created_utc >= week_ago:
+            study_seconds_this_week += float(v.duration)
+    study_hours_this_week = round(study_seconds_this_week / 3600.0, 2)
+
     logger.debug("Dashboard built", extra={"user_id": user_id, "videos": total_videos})
 
     return DashboardOut(
@@ -143,4 +157,5 @@ def build_dashboard(db: Session, *, user_id: int) -> DashboardOut:
         overall_progress_percentage=overall,
         best_score=best_mcq,
         total_chat_sessions=chat_count,
+        study_hours_this_week=study_hours_this_week,
     )

@@ -95,6 +95,10 @@ class DashboardOut(BaseModel):
         description="Best per-video MCQ accuracy (percentage) from latest attempts; 0 if none.",
     )
     total_chat_sessions: int
+    study_hours_this_week: float = Field(
+        default=0.0,
+        description="Approximate hours of lecture video uploaded in the last 7 days (estimate, not session tracking).",
+    )
 
 
 # --- Results ---
