@@ -66,6 +66,12 @@ async def lifespan(app: FastAPI):
 
 settings = get_settings()
 
+# Ensure upload directories exist BEFORE mounting StaticFiles (Railway/fresh
+# servers do not have these folders pre-created like local dev machines do).
+(settings.uploads_dir / "videos").mkdir(parents=True, exist_ok=True)
+(settings.uploads_dir / "audio").mkdir(parents=True, exist_ok=True)
+(settings.uploads_dir / "avatars").mkdir(parents=True, exist_ok=True)
+
 app = FastAPI(
     title=settings.app_name,
     lifespan=lifespan,
