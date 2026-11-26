@@ -4,3 +4,10 @@ __pycache__/
 *.db
 uploads/
 logs/
+.env.*
+!.env.example
+venv/
+.venv/
+*.pem
+*.key
+*.log
