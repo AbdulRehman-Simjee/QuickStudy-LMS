@@ -1,45 +1,105 @@
-# QuickStudy LMS
+# QuickStudy LMS: Backend 🎓
 
-AI-powered Learning Management System (LMS) — FastAPI + SQLAlchemy + SQLite.
+AI-powered Learning Management System that turns lecture videos into transcripts, summaries and study material. Built as my Final Year Project (FYP) at Iqra University.
 
-## Project structure
+## Features
 
-- `main.py`: root ASGI entrypoint for Uvicorn
-- `app/main.py`: FastAPI app factory + router registration
-- `app/config.py`: environment-based settings
-- `app/database.py`: SQLAlchemy engine/session base
-- `app/routes/`: API routes
-- `app/models/`: ORM models (to be added)
-- `app/services/`: AI/business logic (to be added)
-- `app/utils/`: shared utilities
+- YouTube URL upload with transcription (Whisper API) and duplicate caching (yt-dlp)
+- AI-generated summaries and study content (GPT-4o-mini)
+- Lecture summaries reused as context, cutting token usage by ~70–80%
+- Floating AI chatbot
+- Separate Student and Teacher dashboards
+- Free / Pro subscription tiers (dummy payment flow)
+- PDF downloads (ReportLab)
+- JWT authentication
+- Automated tests (pytest)
 
-## Setup (Windows)
+**Backend**
+- FastAPI (Python): REST API
+- JWT: authentication
+- ReportLab: PDF generation
 
-Create and activate a virtual environment:
+**AI & Media**
+- OpenAI Whisper: lecture transcription
+- GPT-4o-mini: summaries, study content and chatbot
+- yt-dlp: YouTube video download (with caching)
+
+**Frontend** *(separate repo)*
+- React + Vite
+
+**Testing**
+- pytest
+
+## Setup
 
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
+git clone https://github.com/AbdulRehman-Simjee/QuickStudy-LMS.git
+cd QuickStudy-LMS
+python -m venv venv
+venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 ```
 
-Create a `.env` file (optional) by copying `.env.example`.
-
-## Run the API
+Copy the example env file and add your own keys:
 
 ```bash
-python main.py
+copy .env.example .env
 ```
 
-By default the API listens on `http://localhost:8001`. You can override this via
-`API_HOST` and `API_PORT` in your `.env` file.
+Run the server:
 
-## Test endpoint
+```bash
+uvicorn app.main:app --reload --port 8001
+```
 
-- `GET /quickstudy/welcome`
+API docs: http://localhost:8001/docs
 
+## Run Tests
+
+```bash
+pytest
+```
+
+## Screenshots
+
+**Login Page**
+
+- [Login](screenshots/Login Page.png)
+
+**Student Dashboard**
+
+- [Dashboard](screenshots/Student Dashboard.png)
+
+**Upload Page**
+
+- [Upload Page](screenshots/Upload Page.png)
+
+**Video Detail Page**
+
+- [Video Detail Page](screenshots/Video Detail Page.png)
+
+**Lecture Summary**
+
+- [Summary](screenshots/Summary.png)
+
+**MCQs Page**
+
+- [MCQs Page](screenshots/MCQs Page.png)
+
+**Assessment Result Page**
+
+- [Assessment Result Page](screenshots/Assessment Result Page.png)
+
+
+## Team
+
+- Abdul Rehman Simjee 
+- Eman Ayaz
+- Nobishah Ali
+
+Supervisor: Engr. Syed Rizwan
+
+## Author
+
+**Abdul Rehman Simjee**: aspiring DevOps engineer
+GitHub: [@AbdulRehman-Simjee](https://github.com/AbdulRehman-Simjee)
