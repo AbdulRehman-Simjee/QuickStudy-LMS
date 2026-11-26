@@ -64,19 +64,19 @@ pytest
 
 **Login Page**
 
-- [Login](screenshots/Login Page.png)
+- [Login](screenshots/LoginPage.png)
 
 **Student Dashboard**
 
-- [Dashboard](screenshots/Student Dashboard.png)
+- [Dashboard](screenshots/StudentDashboard.png)
 
 **Upload Page**
 
-- [Upload Page](screenshots/Upload Page.png)
+- [Upload Page](screenshots/UploadPage.png)
 
 **Video Detail Page**
 
-- [Video Detail Page](screenshots/Video Detail Page.png)
+- [Video Detail Page](screenshots/VideoDetailPage.png)
 
 **Lecture Summary**
 
@@ -84,11 +84,11 @@ pytest
 
 **MCQs Page**
 
-- [MCQs Page](screenshots/MCQs Page.png)
+- [MCQs Page](screenshots/MCQsPage.png)
 
 **Assessment Result Page**
 
-- [Assessment Result Page](screenshots/Assessment Result Page.png)
+- [Assessment Result Page](screenshots/AssessmentResultPage.png)
 
 
 ## Team
